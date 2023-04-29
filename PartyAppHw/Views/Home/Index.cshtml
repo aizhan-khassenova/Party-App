@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<ul>
+    <li>
+        <a href="@Url.Action("Index", new{ controller="Parties" })">Список</a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Create", new{ controller="Parties" })">Добавить</a>
+    </li>
+</ul>
+

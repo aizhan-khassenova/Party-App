@@ -1,0 +1,48 @@
+﻿@model IQueryable<PartyAppHw.Models.DeliveryRequest>
+@{
+    ViewBag.Title = "Заявки на товары";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", new { area="", controller="" })">Главная</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+    </ol>
+</nav>
+
+<h2>@ViewBag.Title</h2>
+
+<a class="btn btn-success" href="@Url.Action("Register")">
+    Добавить
+</a>
+<br />
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Товар</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Звонить при проблеме?</th>
+        </tr>
+        </thread>
+
+    <tbody>
+        @foreach (var row in Model.AsEnumerable().Select((e, i) => new { e, i }))
+        {
+            <tr>
+                <td>@(row.i+1)</td>
+                <td>@row.e.Name</td>
+                <td>@row.e.NotificationEmail</td>
+                <td>@row.e.Telephone</td>
+                <td>@(row.e.CallOnIssue.GetValueOrDefault() ? "да":"нет" )</td>
+                <td>
+                    <a href="@Url.Action("Delete", new { id=row.e.Id})">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
